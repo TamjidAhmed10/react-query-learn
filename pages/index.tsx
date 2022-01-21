@@ -1,9 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { resolve } from 'path/posix'
+import { useQuery } from 'react-query'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const { data , error , isLoading , isError , isSuccess , isIdle } = useQuery("hello world", () => {
+    return new Promise( resolve => setTimeout( resolve, 5000))
+  })
+  console.log({data, error , isLoading , isError , isSuccess , isIdle}) 
   return (
     <div className={styles.container}>
       <Head>
